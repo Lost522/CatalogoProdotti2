@@ -1,0 +1,20 @@
+
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Dettagli prodotti</title>
+</head>
+<body>
+<h1>Dettagli prodotti</h1>
+<p>Codice: <span th:text="${prodotto.codice}"></span></p>
+<p>nome: <span th:text="${prodotto.nome}"></span></p>
+<p>categoria: <span th:text="${prodotto.categoria}"></span></p>
+<p>Anno: <span th:text="${prodotto.anno}"></span></p>
+<p>quantità: <span th:text="${prodotto.quantità}"></span></p>
+<form th:action="@{/prodotti/{codice}/elimina(codice=${prodotto.codice})}" method="post">
+    <button type="submit">Elimina</button>
+</form>
+<a href="/catalogo">Torna al Catalogo</a>
+</body>
+</html>

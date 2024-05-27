@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Lista prodotti</title>
+</head>
+<body>
+<h1>Lista prodotti</h1>
+<table border="3">
+    <thead>
+    <tr>
+        <th>Codice</th>
+        <th>nome</th>
+        <th>categoria</th>
+        <th>Anno</th>
+        <th>quantità</th>
+        <th>Dettagli</th>
+        <th>Elimina</th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="prodotto : ${prodottiCatalogo}">
+        <td><a th:href="@{/catalogo/{codice}(codice=${prodotto.codice})}" th:text="${prodotto.codice}"></a></td>
+        <td th:text="${prodotto.nome}"></td>
+        <td th:text="${prodotto.categoria}"></td>
+        <td th:text="${prodotto.anno}"></td>
+        <td th:text="${prodotto.quantità}"></td>
+        <td><a th:href="@{/catalogo/{codice}(codice=${prodotto.codice})}">Dettagli</a></td>
+        <td><form th:action="@{/catalogo/{codice}/elimina(codice=${prodotto.codice})}" method="post">
+            <button type="submit">Elimina</button>
+        </form></td>
+    </tr>
+    </tbody>
+</table>
+<form th:action="@{/catalogo/nuovo}" method="post" th:object="${nuovoProdotto}">
+    <input type="text" th:field="*{codice}" placeholder="Codice">
+    <input type="text" th:field="*{nome}" placeholder="nome">
+    <input type="text" th:field="*{categoria}" placeholder="categoria">
+    <input type="number" th:field="*{anno}" placeholder="Anno">
+    <input type="number" th:field="*{quantità}" placeholder="quantità">
+    <button type="submit">Aggiungi prodotto</button>
+</form>
+</body>
+</html>
